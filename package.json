@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.6.2",
+    "react-scripts": "^5.0.1",
+    "gh-pages": "^5.0.0"
+},
+  "name": "whatsmoving",
+  "version": "1.0.1",
+  "description": "free house move qoute",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joshua-Watson96/whatsMoving.git"
+  },
+  "author": "Josh Watson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joshua-Watson96/whatsMoving/issues"
+  },
+  "homepage": "https://github.com/Joshua-Watson96/whatsMoving#readme"
+}
