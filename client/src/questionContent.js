@@ -8,4 +8,7 @@ const bedroomQuestion = {
         five: "5"}
 }
 
-export {bedroomQuestion}
+export {
+    bedroomQuestion,
+    
+}

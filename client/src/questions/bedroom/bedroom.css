@@ -1,0 +1,9 @@
+ul {
+    list-style: none; /* Remove default bullets */
+    padding: 0; /* Optional: Remove any default padding */
+  }
+
+  .bedroomAnsBtns {
+    display: inline-block; /* or display: inline; */
+    margin-right: 10px; /* Optional: Add some space between buttons */
+  }

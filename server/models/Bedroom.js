@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const bedroomSchema = new Schema({
-    name: {
+    selectedBedroom: {
         type: String,
         rquired: true
     }
