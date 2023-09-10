@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { bedroomQuestion } from "../../questionContent";
 import { Headermain } from "../../pages/header/header";
 import { useMutation } from '@apollo/client'; // Import the useMutation hook
-import { SAVE_SELECTED_BEDROOM_MUTATION } from "./graphql/mutations"; // Define the mutation
+import { SAVE_SELECTED_BEDROOM_MUTATION } from "../../utils/mutations"; // Define the mutation
 import "./bedroom.css";
 
 export const BedroomQuestion = () => {
