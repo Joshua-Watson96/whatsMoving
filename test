@@ -1,0 +1,62 @@
+// import React, { useState, useEffect } from 'react';
+
+// function AddressAutoComplete() {
+//   const [address, setAddress] = useState('');
+//   const [map, setMap] = useState(null);
+
+//   useEffect(() => {
+//     // Load the Google Maps JavaScript API script
+//     const script = document.createElement('script');
+//     script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places`;
+//     script.async = true;
+//     script.onload = initAutocomplete;
+//     document.head.appendChild(script);
+//   }, []);
+
+//   function initAutocomplete() {
+//     const autocomplete = new window.google.maps.places.Autocomplete(
+//       document.getElementById('address-input')
+//     );
+
+//     // Listen for changes when the user selects an address
+//     autocomplete.addListener('place_changed', () => {
+//       const place = autocomplete.getPlace();
+//       if (!place.geometry) {
+//         return;
+//       }
+
+//       // Set the selected address
+//       setAddress(place.formatted_address);
+
+//       // Create and display the map based on the selected address
+//       const map = new window.google.maps.Map(document.getElementById('map'), {
+//         center: place.geometry.location,
+//         zoom: 15,
+//       });
+//       setMap(map);
+
+//       // Create a marker on the map
+//       new window.google.maps.Marker({
+//         map: map,
+//         position: place.geometry.location,
+//       });
+//     });
+//   }
+
+//   return (
+//     <div>
+//       <input
+//         id="address-input"
+//         type="text"
+//         placeholder="Enter your address"
+//         value={address}
+//         onChange={(e) => setAddress(e.target.value)}
+//       />
+//       <div id="map" style={{ width: '100%', height: '400px' }}></div>
+//     </div>
+//   );
+// }
+
+// export default AddressAutoComplete;
+
+

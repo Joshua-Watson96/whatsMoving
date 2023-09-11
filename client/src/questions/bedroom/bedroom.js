@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'
 import { bedroomQuestion } from "../../questionContent";
 import { Headermain } from "../../pages/header/header";
 import { useMutation } from '@apollo/client'; // Import the useMutation hook
@@ -42,6 +43,11 @@ export const BedroomQuestion = () => {
         ))}
       </ul>
       {selectedBedroom && <p>You've selected: {selectedBedroom}</p>}
+
+      <Link to= "/">Back</Link>
+      <Link to= "/questionTwo"> Next question</Link>
+      
+      
     </div>
   );
 };
