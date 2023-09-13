@@ -44,8 +44,8 @@ export const BedroomQuestion = () => {
       </ul>
       {selectedBedroom && <p>You've selected: {selectedBedroom}</p>}
 
-      <Link to= "/">Back</Link>
-      <Link to= "/questionTwo"> Next question</Link>
+      <Link to= "/"><button> Back </button></Link>
+      <Link to= "/questionTwo"><button>Next question </button></Link>
       
       
     </div>
