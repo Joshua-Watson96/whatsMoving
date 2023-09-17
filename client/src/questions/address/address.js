@@ -1,34 +1,50 @@
-import { GoogleMap, useLoadScript } from "@react-google-maps/api";
-import {  useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Headermain } from "../../pages/header/header";
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-places-autocomplete";
+import Geocode from "react-geocode"; // Import react-geocode
 import "./address.css";
 
 export const AddressMap = () => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_API_KEY,
   });
-  const [address, setAddress] = useState(""); // State to store user-entered address
-  const [mapCenter, setMapCenter] = useState({ lat: 18.52043, lng: 73.856743 });
+  const [address, setAddress] = useState("");
+  const [mapCenter, setMapCenter] = useState({ lat: "-37.61928", lng: "145.12509" });
 
-  // Function to handle form submission
+  // Initialize react-geocode with your API key
+  Geocode.setApiKey(process.env.GOOGLE_API_KEY);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Use a geocoding service (e.g., Google Geocoding API) to convert the address to coordinates
-    // Replace this with your actual geocoding logic
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-        address
-      )}&key=${process.env.GOOGLE_API_KEY}`
-    );
-    const data = await response.json();
+    try {
+      // Use geocodeByAddress to get the address details
+      const results = await geocodeByAddress(address);
+      const latLng = await getLatLng(results[0]);
 
-    // Extract the coordinates from the geocoding result
-    const location = data.results[0].geometry.location;
+      // Reverse geocode the coordinates to get the address
+      Geocode.fromLatLng(latLng.lat, latLng.lng).then(
+        (response) => {
+          const formattedAddress = response.results[0].formatted_address;
 
-    // Update the map center
-    setMapCenter(location);
+          // Update the map center with the geocoded coordinates
+          setMapCenter(latLng);
+
+          // Update the address with the formatted address
+          setAddress(formattedAddress);
+        },
+        (error) => {
+          console.error("Error reverse geocoding coordinates:", error);
+        }
+      );
+    } catch (error) {
+      console.error("Error geocoding address:", error);
+    }
   };
 
   return (
@@ -36,12 +52,39 @@ export const AddressMap = () => {
       <Headermain />
       <div>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Enter your address"
+          <PlacesAutocomplete
             value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
+            onChange={setAddress}
+            onSelect={setAddress}
+          >
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <div>
+                <input
+                  {...getInputProps({
+                    placeholder: "Enter your address",
+                    className: "location-search-input",
+                  })}
+                />
+                <div className="autocomplete-dropdown-container">
+                  {loading && <div>Loading...</div>}
+                  {suggestions.map((suggestion) => {
+                    const className = suggestion.active
+                      ? "suggestion-item--active"
+                      : "suggestion-item";
+                    return (
+                      <div
+                        {...getSuggestionItemProps(suggestion, {
+                          className,
+                        })}
+                      >
+                        <span>{suggestion.description}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </PlacesAutocomplete>
           <button type="submit">Show on Map</button>
         </form>
       </div>
