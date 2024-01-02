@@ -1,4 +1,5 @@
 const Bedroom = require('../models/Bedroom')
+const PickUp = require('../models/Access')
 
 const resolvers = {
    Query: {
@@ -20,6 +21,15 @@ const resolvers = {
             return bedroom;
         } catch (error) {
             throw new Error('Failed to save selected answer');
+        }
+    },
+    saveSelectedPickUp: async (_, { SelectedPickUp }) => {
+        try {
+             const pickUp = new PickUp({ SelectedPickUp });
+             await pickUp.save();
+             return pickUp
+        } catch (error) {
+            throw new Error('Failed to save pick up')
         }
     },
 },

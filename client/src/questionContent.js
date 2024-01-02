@@ -8,7 +8,19 @@ const bedroomQuestion = {
         five: "5"}
 }
 
+const pickUpAccess = {
+    title: "Is the pick-up address a",
+    answer: {
+        Single:"Single Storey ",
+        Double: "Double Storey",
+        ThreeOrMore:"3 or more levels",
+        Storage:"Storage facility",
+        Appartment: "Appartment building"
+    }
+}
+
 export {
     bedroomQuestion,
+    pickUpAccess
     
 }

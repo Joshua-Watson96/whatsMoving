@@ -7,5 +7,23 @@ export const SAVE_SELECTED_BEDROOM_MUTATION = gql`
       _id
       selectedBedroom
     }
+  } `
+
+  
+
+
+  export const SAVE_SELECTED_PICKUP_MUTATION = gql`
+  mutation SavePickUpAccess($pickUpAccess: PickUpAccessInput!) {
+    savePickUpAccess(pickUpAccess: $pickUpAccess) {
+      _id
+      title
+      answer {
+        Single
+        Double
+        ThreeOrMore
+        Storage
+        Appartment
+      }
+    }
   }
-`;
+`

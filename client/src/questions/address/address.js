@@ -103,6 +103,10 @@ export const AddressMap = () => {
         <Link to="/questionOne">
           <button>Back</button>
         </Link>
+
+        <Link to="/questionThree">
+          <button>Next</button>
+        </Link>
       </div>
     </div>
   );
